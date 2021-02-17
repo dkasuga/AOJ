@@ -16,16 +16,17 @@ const int64_t INF_64 = 1LL << 60;
 const double EPS = 1e-12;
 
 // Stack1 is implemented using primitive array
+template <typename T>
 class Stack1 {
 private:
     int top_idx = 0;
-    int* array;
+    T* array;
 
 public:
     // constructor
     Stack1(int max_size)
     {
-        array = new int[max_size];
+        array = new T[max_size];
     }
 
     // destructor
@@ -34,7 +35,7 @@ public:
         delete[] array;
     }
 
-    void push(int x)
+    void push(T x)
     {
         array[++top_idx] = x;
     }
@@ -42,7 +43,7 @@ public:
     {
         return top_idx == 0;
     }
-    int top()
+    T top()
     {
         if (isEmpty()) {
             throw std::runtime_error("error!");
@@ -58,13 +59,14 @@ public:
     }
 };
 // Stack2 is implemented using dynamic array (variable length array)
+template <typename T>
 class Stack2 {
 private:
-    vector<int> data;
+    vector<T> data;
 
 public:
     // insert an element into the stack
-    void push(int x)
+    void push(T x)
     {
         data.push_back(x);
     }
@@ -76,7 +78,7 @@ public:
     }
 
     // Get the top item from the stack
-    int top()
+    T top()
     {
         if (isEmpty())
             return -1;
@@ -95,7 +97,7 @@ public:
 
 int main()
 {
-    Stack2 stack;
+    Stack2<int> stack;
     stack.push(2);
     stack.push(5);
     cout << stack.top() << endl;
